@@ -1,12 +1,4 @@
-/*
- * editor.java
- *
- * Use for anyone as long as it is acknowldedged to me
- * Please dont reuse this code without prior notice.
- * If you have any enquiries please do not hesitate to email me
- * dh002211@ex.apiit.edu.my
- */
- 
+
 //THE IMPORTED LIBRARIES
 import javax.swing.*;
 import java.awt.*;
