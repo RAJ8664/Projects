@@ -29,7 +29,7 @@ A simple and efficient **Text Editor** developed in Java using the **Swing** lib
    ```
 2. Navigate to the project directory:
    ```bash
-   cd Text Editor in Java
+   cd 'Text Editor in Java'
    ```
 3. Compile the Java files:
    ```bash
