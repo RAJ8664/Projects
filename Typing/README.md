@@ -19,12 +19,12 @@ Here are some screenshots of the Typing Test Application in action:
 
 ### Typing Test Interface
 
-![Typing Test](https://github.com/RAJ8664/Projects/assets/119309033/3a6e0e2f-fb50-437d-96f7-e781dad631ed)
+![Typing Test](./frontUI.png)
 
 
 ### Results Page
 
-![Results Page](https://github.com/RAJ8664/Projects/assets/119309033/2cb39542-4ed5-4477-a445-e93681f50013)
+![Results Page](./Result.png)
 
 _Description: Displays detailed results after completing a typing test._
 
