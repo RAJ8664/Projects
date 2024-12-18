@@ -25,7 +25,7 @@ A simple and efficient **Text Editor** developed in Java using the **Swing** lib
 ### How to Run
 1. Clone the repository:
    ```bash
-   git clone https://github.com/RAJ8664/Projects
+   git clone https://github.com/RAJ8664/Projects.git
    ```
 2. Navigate to the project directory:
    ```bash
