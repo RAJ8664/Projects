@@ -14,7 +14,7 @@ import com.roy.raj.Todo.web.Application.service.TodoService;
 
 @RestController
 public class TodoController {
-	
+
 	@Autowired
 	private TodoService service;
 
@@ -36,20 +36,17 @@ public class TodoController {
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
-
 	@RequestMapping(method = RequestMethod.GET, path = "/todos")
 	public ResponseEntity<?> getAllTodo() {
 		List<TodoDto> res = service.getAllTodo();
 		return new ResponseEntity<>(res, HttpStatus.OK);
 	}
 
-
 	@RequestMapping(method = RequestMethod.PUT, path = "/todos/completed/{id}/{completed}")
 	public ResponseEntity<?> changeCompletedById(@PathVariable long id, @PathVariable String completed) {
 		TodoDto res = service.updateCompleted(id, completed);
 		return new ResponseEntity<>(res, HttpStatus.OK);
 	}
-	
 	
 	@RequestMapping(method = RequestMethod.PUT, path = "/todos/title/{id}/{title}")
 	public ResponseEntity<?> changeTitleById(@PathVariable long id, @PathVariable String title) {
@@ -62,7 +59,5 @@ public class TodoController {
 		TodoDto res = service.updateDescription(id, description);
 		return new ResponseEntity<>(res, HttpStatus.OK);
 	}
-
-
 
 }
