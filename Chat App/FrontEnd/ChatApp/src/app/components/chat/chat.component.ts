@@ -18,6 +18,8 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
   messages: ChatMessage[] = [];
   newMessage: string = '';
   username: string = '';
+  onlineUsers: number = 0;
+  isTyping: boolean = false;
   private subscription: Subscription = new Subscription();
   
   constructor(

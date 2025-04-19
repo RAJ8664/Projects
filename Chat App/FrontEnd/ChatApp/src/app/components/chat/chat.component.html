@@ -6,7 +6,7 @@
     <div class="absolute bottom-0 left-1/4 w-96 h-96 bg-pink-500/10 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-4000"></div>
   </div>
 
-  <!-- This part is for Header -->
+  <!-- Header -->
   <header class="bg-gray-800/80 backdrop-blur-lg border-b border-gray-700/50 shadow-lg z-10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
       <div class="flex justify-between items-center">
@@ -20,10 +20,7 @@
             Real-Time Chat
           </h1>
         </div>
-        <button 
-          (click)="navigateToHome()" 
-          class="group flex items-center space-x-2 px-4 py-2 rounded-full bg-gray-700/50 hover:bg-gray-700 text-gray-300 hover:text-white transition-all duration-300 shadow hover:shadow-md"
-        >
+        <button (click)="navigateToHome()" class="group flex items-center space-x-2 px-4 py-2 rounded-full bg-gray-700/50 hover:bg-gray-700 text-gray-300 hover:text-white transition-all duration-300 shadow hover:shadow-md">
           <span>Leave Chat</span>
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
@@ -32,87 +29,69 @@
       </div>
     </div>
   </header>
-  
-  <!-- This part is for Chat Container -->
-  <div class="flex-1 overflow-hidden flex flex-col max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
-    <div class="bg-gray-800/60 backdrop-blur-lg border border-gray-700/50 rounded-2xl shadow-xl flex-1 flex flex-col overflow-hidden">
-      <!-- Messages -->
-      <div #messageContainer class="flex-1 overflow-y-auto p-4 space-y-4 custom-scrollbar">
+
+  <!-- Main Chat Container -->
+  <div class="flex-1 overflow-hidden flex flex-col max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 z-10">
+    <div class="bg-gray-900/80 backdrop-blur-xl border border-gray-700/30 rounded-2xl shadow-2xl flex-1 flex flex-col overflow-hidden">
+      <!-- Messages Area -->
+      <div #messageContainer class="flex-1 overflow-y-auto p-4 space-y-6 scroll-smooth">
         <ng-container *ngFor="let message of messages; let i = index">
           <!-- Event Messages (Join/Leave) -->
-          <div *ngIf="message.type === 'JOIN' || message.type === 'LEAVE'" 
-               class="flex justify-center animate-fade-in-down" 
-               [style.animation-delay]="i * 0.1 + 's'">
-            <div class="bg-gray-700/60 backdrop-blur-sm px-4 py-2 rounded-full text-sm text-gray-300 border border-gray-600/50 shadow-sm">
-              <span class="inline-flex items-center">
-                <svg *ngIf="message.type === 'JOIN'" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 12H6" />
+          <div *ngIf="message.type === 'JOIN' || message.type === 'LEAVE'" class="flex justify-center animate-fade-in-down" [style.animation-delay]="i * 0.1 + 's'">
+            <div class="bg-gray-800/70 backdrop-blur-sm px-4 py-2 rounded-full text-sm text-gray-300 border border-gray-700/50 shadow-lg">
+              <span class="inline-flex items-center gap-2">
+                <svg *ngIf="message.type === 'JOIN'" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M18 12H6" />
                 </svg>
-                <svg *ngIf="message.type === 'LEAVE'" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                <svg *ngIf="message.type === 'LEAVE'" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-rose-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12" />
                 </svg>
                 {{ getEventText(message) }}
               </span>
             </div>
           </div>
-          
-          <!-- This part is for Chat Messages -->
-          <div *ngIf="message.type === 'CHAT'" 
-               [ngClass]="{'flex justify-end': message.sender === username, 'flex': message.sender !== username}"
-               class="animate-fade-in-up" 
-               [style.animation-delay]="i * 0.1 + 's'">
-            <div class="flex max-w-xs md:max-w-md space-x-3 group" 
-                 [ngClass]="{'flex-row-reverse space-x-reverse': message.sender === username}">
+
+          <!-- Chat Messages -->
+          <div *ngIf="message.type === 'CHAT'" [ngClass]="{'justify-end': message.sender === username, 'justify-start': message.sender !== username}" class="flex animate-fade-in-up" [style.animation-delay]="i * 0.1 + 's'">
+            <div class="flex max-w-[90%] md:max-w-[75%] gap-3 group" [ngClass]="{'flex-row-reverse': message.sender === username}">
               <!-- Avatar -->
-              <div *ngIf="message.sender !== username" 
-                   [ngClass]="getAvatarColor(message.sender)"
-                   class="flex-shrink-0 h-10 w-10 rounded-full flex items-center justify-center text-white shadow-md transform hover:scale-110 transition-transform duration-300">
+              <div [ngClass]="getAvatarColor(message.sender)" class="flex-shrink-0 h-10 w-10 rounded-full flex items-center justify-center text-white font-medium shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-md">
                 {{ getInitials(message.sender) }}
               </div>
-              
-              <!-- This part is for Message Bubble -->
-              <div>
-                <div *ngIf="message.sender !== username" class="text-sm text-gray-400 mb-1 font-medium">
+              <!-- Message Content -->
+              <div class="flex flex-col" [ngClass]="{'items-end': message.sender === username, 'items-start': message.sender !== username}">
+                <!-- Sender Name -->
+                <div *ngIf="message.sender !== username" class="text-xs text-gray-400 mb-1 font-medium tracking-wide">
                   {{ message.sender }}
                 </div>
-                <div [ngClass]="message.sender === username ? 
-                  'bg-gradient-to-r from-purple-500 to-blue-600 text-white' : 
-                  'bg-gray-700/80 border border-gray-600/50 text-white'"
-                  class="px-4 py-2 rounded-2xl inline-block shadow-md hover:shadow-lg transition-shadow duration-300 max-w-full break-words">
-                  {{ message.content }}
-                </div>
-                <div class="text-xs text-gray-500 mt-1 opacity-70 group-hover:opacity-100 transition-opacity duration-300">
-                  {{ message.timestamp | date:'shortTime' }}
+                <!-- Message Bubble -->
+                <div [ngClass]="message.sender === username ? 'bg-gradient-to-r from-indigo-500 to-purple-600 text-white rounded-se-none' : 'bg-gray-800 text-gray-100 rounded-ss-none'" class="px-4 py-3 rounded-2xl shadow-md transition-all duration-200 hover:shadow-lg">
+                  <div class="whitespace-pre-wrap break-words text-sm/relaxed">
+                    {{ message.content }}
+                  </div>
+                  <div class="text-[0.65rem] opacity-70 mt-1 text-right tracking-tight">
+                    {{ message.timestamp | date:'shortTime' }}
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </ng-container>
       </div>
-      
-      <!-- This part is for Message Input -->
-      <div class="border-t border-gray-700/50 p-4 bg-gray-800/80 backdrop-blur-md">
-        <form (ngSubmit)="sendMessage()" class="flex space-x-3">
+
+      <!-- Message Input -->
+      <div class="border-t border-gray-700/50 p-4 bg-gray-900/80 backdrop-blur-md">
+        <form (ngSubmit)="sendMessage()" class="flex gap-3">
           <div class="relative flex-1">
-            <input 
-              type="text" 
-              [(ngModel)]="newMessage" 
-              name="newMessage"
-              class="w-full px-5 py-3 bg-gray-700/50 border border-gray-600/50 focus:border-purple-500/50 rounded-full text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500/50 shadow-inner transition-all duration-300"
-              placeholder="Type a message..."
-              autocomplete="off"
-            >
-            <span class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400">
+            <input type="text" [(ngModel)]="newMessage" name="newMessage" class="w-full px-5 py-3 bg-gray-800/70 border border-gray-700/50 focus:border-indigo-500/50 rounded-full text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500/30 shadow-inner transition-all duration-300" placeholder="Type a message..." autocomplete="off">
+            <button type="button" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-indigo-400 transition-colors">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
-            </span>
+            </button>
           </div>
-          <button 
-            type="submit" 
-            class="px-5 py-3 bg-gradient-to-r from-purple-500 to-blue-600 hover:from-purple-600 hover:to-blue-700 rounded-full text-white font-medium shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 flex items-center"
-          >
-            <span class="mr-1">Send</span>
+          <button type="submit" class="px-5 py-3 bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 rounded-full text-white font-medium shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-300 flex items-center disabled:opacity-50" [disabled]="!newMessage.trim()">
+            <span class="mr-2">Send</span>
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
             </svg>
@@ -122,3 +101,8 @@
     </div>
   </div>
 </div>
+
+
+
+
+
