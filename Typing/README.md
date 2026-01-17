@@ -1,61 +1,83 @@
+# ⌨️ Typing Test Application
 
-# Typing Test Application
+Level up your typing skills with the **Typing Test Application** : a sleek, web-based tool designed to help you type faster, smarter, and more accurately. Whether you're practicing for fun or sharpening your productivity, this app makes improvement engaging and measurable.
 
-Welcome to the Typing Test Application - a web-based tool designed to help you improve your typing speed and accuracy while providing a fun and engaging user experience. Test your typing skills with various difficulty levels and track your progress over time!
+## 🚀 Features
 
-## Features
+✨ **Live Typing Stats**  
+Track your **Words Per Minute (WPM)** and **accuracy** in real time as you type.
 
-- **Real-time typing statistics**: View your typing speed (words per minute) and accuracy in real time.
-- **Multiple test options**: Choose from a range of test lengths and complexities.
-- **Progress tracking**: Keep track of your performance history and see how you improve over time.
-- **Responsive design**: Compatible with desktops, tablets, and mobile devices.
+🧠 **Custom Test Modes**  
+Choose from multiple test lengths and difficulty levels tailored to your comfort and challenge needs.
 
-## Preview
+📈 **Progress Tracking**  
+Review your past performances and visually see how your typing skills improve over time.
 
-Here are some screenshots of the Typing Test Application in action:
+📱 **Fully Responsive UI**  
+Optimized for desktops, tablets, and mobile devices — type anywhere, anytime.
 
-
-
+## 🖥️ Preview
 
 ### Typing Test Interface
 
-![Typing Test](./frontUI.png)
+![Typing Test UI](./frontUI.png)
 
-
-### Results Page
+### Results Dashboard
 
 ![Results Page](./Result.png)
 
-_Description: Displays detailed results after completing a typing test._
+> _Detailed performance breakdown displayed after each test._
 
-## Getting Started
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+## 🐳 Run with Docker (Quick Start)
+
+Get up and running instantly using Docker:
+
+```bash
+docker pull rkroy/typing-test:latest
+docker run -p 8080:8080 rkroy/typing-test:latest
+```
+
+Then open your browser and visit:
+👉 **[http://localhost:8080](http://localhost:8080)**
+
+## 🛠️ Getting Started (Local Setup)
+
+Follow these steps to run the project locally for development or customization.
 
 ### Prerequisites
 
-You will need Visual Studio Code installed on your computer, along with the Live Server extension for VS Code.
+Make sure you have:
 
-1. [Download Visual Studio Code](https://code.visualstudio.com/Download)
-2. Install the Live Server extension from the VS Code marketplace.
+- **Visual Studio Code**
+- **Live Server extension** for VS Code
 
-### Installing
+🔗 Downloads:
 
-Follow these steps to get the app running:
+1. [Visual Studio Code](https://code.visualstudio.com/Download)
+2. Live Server (via VS Code Extensions Marketplace)
+
+### 📦 Installation
+
+Clone the repository and open it in VS Code:
 
 ```bash
 git clone https://github.com/RAJ8664/Projects/tree/main/Typing
 cd Typing
-code .  # This will open the project in Visual Studio Code.
+code .
 ```
 
-After opening the project in Visual Studio Code:
-- Locate the `index.html` file in the Visual Studio Code sidebar.
-- Right-click on the `index.html` file.
-- Choose `Open with Live Server` from the context menu to launch the application in your default web browser.
+### ▶️ Run the App
 
-## Built With
+1. Locate `index.html` in the VS Code sidebar
+2. Right-click on it
+3. Select **“Open with Live Server”**
 
-- HTML
-- CSS
-- JavaScript
+Your browser will automatically launch the application 🎉
 
+## 🧩 Tech Stack
+
+Built using modern web fundamentals:
+
+- **HTML** – Structure
+- **CSS** – Styling
+- **JavaScript** – Logic & Interactivity
